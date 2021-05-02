@@ -1,0 +1,24 @@
+h1{
+    display: inline;
+}
+
+.headerContainer{
+    display: grid;
+    grid-template-areas: 
+    "logo . . links";
+    justify-content: space-between;
+    align-items: center;
+
+  padding: 0.5em 1.5em;
+
+  border-bottom: 1px solid black;
+}
+
+.header__logo{
+    grid-area: logo;
+}
+
+.header__contents{
+    grid-area: links;
+    padding-top: 3rem;
+}

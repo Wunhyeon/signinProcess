@@ -1,0 +1,17 @@
+.signupConatiner .signupForm__indi{
+    display: grid;
+    grid-template-columns : 1fr;
+}
+
+.signupConatiner .signup__contents--companyInfo{
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.signupConatiner .signupForm__indi label{
+    margin: 0.5rem 0;
+}
+
+.signupConatiner .signup__contents--companyInfo label{
+    margin: 0.5rem 0;
+}
