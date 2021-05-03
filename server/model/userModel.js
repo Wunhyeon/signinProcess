@@ -55,4 +55,9 @@ module.exports = {
     );
     return result[0];
   },
+
+  getAllUser: async () => {
+    let result = await (await connection).execute(`SELECT * FROM Users`);
+    return result[0];
+  },
 };
