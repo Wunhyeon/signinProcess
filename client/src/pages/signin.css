@@ -1,0 +1,22 @@
+.signinContainer{
+    display: grid;
+    grid-template-areas: '. cnt .';
+    grid-template-columns: 2fr 1fr 2fr;
+}
+
+.signinContainer .signinContents{
+    grid-area: cnt;
+    display: grid;
+    grid-template-columns : 1fr;
+    
+}
+
+
+.signinContainer .signinContents label{
+    margin: 0.5rem 0;
+}
+
+button{
+    text-align: center;
+    width: 100%;
+}
