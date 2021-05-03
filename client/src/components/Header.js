@@ -27,7 +27,8 @@ const Header = (props) => {
         )}
         {props.isLogin && props.laveling === 2 && (
           <>
-            <div>스타트업 관계자</div>
+            <span>스타트업 관계자</span>&nbsp;&nbsp;
+            <Link to="/company/getMyPaper">우리회사자료</Link>
           </>
         )}
       </div>
