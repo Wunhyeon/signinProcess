@@ -1,5 +1,6 @@
 const connection = require("../../db");
 const userModel = require("../../model/userModel");
+const { createToken } = require("../../util/token/token");
 
 const postUser = {
   signUp: async (req, res) => {
@@ -33,6 +34,13 @@ const postUser = {
       }
 
       let userInsertResult = await userModel.insertUser(userInfo);
+
+      if (laveling === 3) {
+        // 심사역으로 가입했을 때 tmp테이블의 content칼럼에 유저의 아이디(프라이머리 키)를 넣어준다.
+        // 그리고 관리자계정(laveling = 0)이 로그인 할 때 SELECT content FROM tmp where checked = false 로 심사를 기다리고 있는 데이터들을 뿌려주고,
+        // 관리자가 승인을 하면  UPDATE Users SET laveling = 1 where UserId = ? sql문을 통해 업데이트 해준다.
+      }
+
       res.send({ message: "OK" });
     } catch (e) {
       console.log("Err in Signup : ", e);
@@ -48,6 +56,22 @@ const postUser = {
       res.status(409).send({ message: "Duplicate Email" });
     } else {
       res.send({ message: "OK" });
+    }
+  },
+  signIn: async (req, res) => {
+    console.log("sign In!");
+    const { email, password } = req.body;
+
+    let result = await userModel.signinCheck(email, password);
+    console.log("result : ", result);
+    if (result.length === 0) {
+      res.status(404).send({ message: "Invalid User" });
+    } else {
+      // res.status(200).send({message : 'ok', lavel : });
+      const { UserID, Email, Name, CompanyID, Laveling } = result[0];
+
+      const token = createToken({ UserID, Email, Name, CompanyID, Laveling });
+      res.status(200).send({ message: "ok", token, Laveling });
     }
   },
 };

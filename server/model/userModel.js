@@ -48,4 +48,11 @@ module.exports = {
                 VALUES('${email}', '${name}','${password}', '${phone}', '${laveling}', '${companyID}')`);
     return result;
   },
+
+  signinCheck: async (email, password) => {
+    let result = await (await connection).execute(
+      `SELECT * FROM Users WHERE email = '${email}' AND password = '${password}' LIMIT 1`
+    );
+    return result[0];
+  },
 };

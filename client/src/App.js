@@ -5,15 +5,34 @@ import Main from "./pages/Main";
 import Header from "./components/Header";
 import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
+import { useState } from "react";
+import AdminAllUser from "./pages/AdminAllUser";
 
 function App() {
+  const [isLogin, setIsLogin] = useState(false);
+  const [laveling, setLaveling] = useState();
+  const [accessToken, setAccessToken] = useState("");
+
   return (
     <div className="App">
       <BrowserRouter>
-        <Header />
+        <Header isLogin={isLogin} laveling={laveling} />
         <Route exact path="/" render={() => <Main />} />
-        <Route path="/signin" render={() => <Signin />} />
+        <Route
+          path="/signin"
+          render={() => (
+            <Signin
+              setIsLogin={setIsLogin}
+              setLaveling={setLaveling}
+              setAccessToken={setAccessToken}
+            />
+          )}
+        />
         <Route path="/signup" render={() => <Signup />} />
+        <Route
+          path="/admin/allUser"
+          render={() => <AdminAllUser accessToken={accessToken} />}
+        />
       </BrowserRouter>
     </div>
   );
