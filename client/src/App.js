@@ -9,6 +9,7 @@ import { useState } from "react";
 import AdminAllUser from "./pages/AdminAllUser";
 import GetMyPaper from "./pages/GetMyPaper";
 import WriteBoard from "./pages/WriteBoard";
+import GetAllPaper from "./pages/GetAllPaper";
 
 function App() {
   const [isLogin, setIsLogin] = useState(false);
@@ -35,6 +36,11 @@ function App() {
           path="/admin/allUser"
           render={() => <AdminAllUser accessToken={accessToken} />}
         />
+        <Route
+          path="/admin/allPaper"
+          render={() => <GetAllPaper accessToken={accessToken} />}
+        />
+
         <Route
           path="/company/getMyPaper"
           render={() => <GetMyPaper accessToken={accessToken} />}
