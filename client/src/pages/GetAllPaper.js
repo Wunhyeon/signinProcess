@@ -1,39 +1,40 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 
-const GetMyPaper = (props) => {
+const GetAllPaper = (props) => {
   const [paperList, setPaperList] = useState("");
-  const getMyPaper = () => {
+
+  const getAllPaper = () => {
     axios
-      .get("http://localhost:5000/boards/startup/getBoard", {
+      .get("http://localhost:5000/boards/admin/getAllPaper", {
         headers: {
           Authorization: `Bearer ${props.accessToken}`,
         },
       })
       .then((result) => {
-        console.log("result.data : ", result.data);
+        console.log("getAllPaper : ", result);
         setPaperList(result.data.result);
       });
   };
 
   useEffect(() => {
-    getMyPaper();
+    getAllPaper();
   }, []);
-
   return (
-    <div className="getMyPaperContainer">
-      <h1>우리 회사 자료</h1>
+    <div className="getAllPaperContainer">
+      <h1>모든 게시물 관리</h1>
       <br />
-      <Link to="/writeBoard">글쓰기</Link>
+      <br />
       {paperList &&
         paperList.map((el, i) => (
           <div key={i}>
-            제목 : {el.title} 내용 : {el.description}
+            제목 : {el.title} 설명 : {el.description} 회사 : {el.companyName}{" "}
+            글쓴이 : {el.UserName} 글쓴이 이메일 : {el.UserEmail}
+            <hr />
           </div>
         ))}
     </div>
   );
 };
 
-export default GetMyPaper;
+export default GetAllPaper;

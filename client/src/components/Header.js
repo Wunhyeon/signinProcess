@@ -17,12 +17,13 @@ const Header = (props) => {
           <>
             <span>관리자</span>&nbsp;&nbsp;
             <Link to="/admin/allUser">모든회원관리</Link>&nbsp;&nbsp;
-            <Link to="/admin/allContent">모든 게시물 관리</Link>
+            <Link to="/admin/allPaper">모든 게시물 관리</Link>
           </>
         )}
         {props.isLogin && props.laveling === 1 && (
           <>
             <div>심사역</div>
+            <Link to="/admin/allPaper">모든 게시물 관리</Link>
           </>
         )}
         {props.isLogin && props.laveling === 2 && (
