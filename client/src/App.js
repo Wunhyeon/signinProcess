@@ -7,6 +7,8 @@ import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
 import { useState } from "react";
 import AdminAllUser from "./pages/AdminAllUser";
+import GetMyPaper from "./pages/GetMyPaper";
+import WriteBoard from "./pages/WriteBoard";
 
 function App() {
   const [isLogin, setIsLogin] = useState(false);
@@ -32,6 +34,14 @@ function App() {
         <Route
           path="/admin/allUser"
           render={() => <AdminAllUser accessToken={accessToken} />}
+        />
+        <Route
+          path="/company/getMyPaper"
+          render={() => <GetMyPaper accessToken={accessToken} />}
+        />
+        <Route
+          path="/writeBoard"
+          render={() => <WriteBoard accessToken={accessToken} />}
         />
       </BrowserRouter>
     </div>
